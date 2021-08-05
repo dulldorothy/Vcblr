@@ -48,13 +48,15 @@ public class ConsoleVocabularyApplication {
                     print("RU-EN");
                     String ruWord;
                     ruWord = getConsoleWordInput();
-                    this.vocabulary.enRuTranslate(ruWord);
+                    vocabulary.ruEnTranslate(ruWord);
+                    print(DELIMITER);
                     break;
                 case 2:
                     print("EN-RU");
                     String enWord;
                     enWord = getConsoleWordInput();
-                    this.vocabulary.enRuTranslate(enWord);
+                    vocabulary.enRuTranslate(enWord);
+                    print(DELIMITER);
                     break;
                 case 3:
                     String enWordInput;
@@ -63,37 +65,49 @@ public class ConsoleVocabularyApplication {
                     enWordInput = getConsoleWordInput();
                     print("Enter Russian equivalent: ");
                     ruWordInput = getConsoleWordInput();
-                    vocabulary.addWordIntoVocabulary(enWordInput,ruWordInput);
+                    vocabulary.addWordIntoVocabulary(enWordInput, ruWordInput);
+                    print(DELIMITER);
                     break;
                 case 4:
+                    print("Quiz");
+                    vocabulary.quiz();
+                    print(DELIMITER);
                     break;
                 case 5:
+                    print("All words: ");
+                    vocabulary.showAllWords();
+                    print(DELIMITER);
                     break;
                 case 6:
+                    vocabulary.amountOfPairs();
+                    print(DELIMITER);
                     break;
                 case 0:
                     isRunning = false;
                     print("Closing app...");
+                    vocabulary.save();
                     break;
             }
         }
     }
 
     private String getConsoleWordInput() {
+
         String result;
-        if (sc.hasNextLine()) {
-            result = sc.nextLine();
-            if (result.contains("\\d+")) {
-                print("Incorrect word! Try again...");
-                result = getConsoleWordInput();
-            } else {
-                return result;
-            }
-        }else{
-            print("Input cannot be null.");
+
+        result = sc.nextLine();
+        if (result.equals(""))
+        {
+            print("Input cannot be null!");
+            result = getConsoleWordInput();
+        }
+        if (result.contains("\\d+")) {
+            print("Incorrect word! Try again...");
             result = getConsoleWordInput();
         }
         return result;
+
+
     }
 
     private void print(String message) {
@@ -106,14 +120,17 @@ public class ConsoleVocabularyApplication {
             result = sc.nextInt();
         } else {
             result = RESTART_VALUE;
-            clearIncorrectConsoleInput();
+
+            clearConsoleInput();
         }
+        clearConsoleInput();
         return result;
+
     }
 
-    private void clearIncorrectConsoleInput() {
+    private void clearConsoleInput() {
         String rubbish;
         rubbish = sc.nextLine();
-        System.out.println("Incorrect input:[" + rubbish + "]");
+
     }
 }

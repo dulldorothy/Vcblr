@@ -1,0 +1,11 @@
+scissors;ножницы
+mouse;мышь
+keyboard;клавиатура
+password;пароль
+obsessed;одержимый
+string;строка
+ring;кольцо
+line;линия
+bird;птица
+bun;булочка
+canser;рак

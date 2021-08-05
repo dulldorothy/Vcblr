@@ -1,9 +1,9 @@
 package com.company.service;
 
 public interface Vocabulary {
-    void ruEnTranslate(String ruWord);
+    String ruEnTranslate(String ruWord);
 
-    void enRuTranslate(String enWord);
+    String enRuTranslate(String enWord);
 
     void addWordIntoVocabulary(String enWord, String ruWord);
 
@@ -12,4 +12,6 @@ public interface Vocabulary {
     void showAllWords();
 
     void amountOfPairs();
+
+    void save();
 }
