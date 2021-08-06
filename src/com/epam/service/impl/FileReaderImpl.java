@@ -1,13 +1,13 @@
-package com.company.service.impl;
+package com.epam.service.impl;
 
-import com.company.entity.PairSet;
+import com.epam.entity.PairSet;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 
-public class FileReaderImpl implements com.company.service.FileReader {
+public class FileReaderImpl implements com.epam.service.FileReader {
 
     private final String fileName;
     private final FileReader fileReader;

@@ -1,4 +1,4 @@
-package com.company.entity;
+package com.epam.entity;
 
 
 

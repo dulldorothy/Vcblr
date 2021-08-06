@@ -1,4 +1,4 @@
-package com.company.service;
+package com.epam.service;
 
 public interface Vocabulary {
     String ruEnTranslate(String ruWord);

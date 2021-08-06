@@ -1,4 +1,4 @@
-package com.company.service;
+package com.epam.service;
 
 import java.io.IOException;
 import java.util.HashMap;

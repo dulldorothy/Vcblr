@@ -1,8 +1,8 @@
-package com.company;
+package com.epam;
 
-import com.company.console.ConsoleVocabularyApplication;
-import com.company.service.Vocabulary;
-import com.company.service.impl.VocabularyImp;
+import com.epam.console.ConsoleVocabularyApplication;
+import com.epam.service.Vocabulary;
+import com.epam.service.impl.VocabularyImp;
 
 
 import java.io.IOException;

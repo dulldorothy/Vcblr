@@ -1,22 +1,22 @@
-package com.company.service.impl;
+package com.epam.service.impl;
 
-import com.company.entity.PairSet;
-import com.company.service.FileReader;
-import com.company.service.Vocabulary;
-import javafx.scene.control.RadioMenuItem;
 
-import java.io.FileNotFoundException;
+import com.epam.service.FileReader;
+import com.epam.service.InputProcessor;
+import com.epam.service.Vocabulary;
+
 import java.io.IOException;
 import java.util.*;
 
 public class VocabularyImp implements Vocabulary {
     private final FileReader fileReader;
     private HashMap<String, String> words;
-
+    private InputProcessor ip;
 
     public VocabularyImp(String fileName) throws IOException {
         this.fileReader = new FileReaderImpl(fileName);
         this.words = this.fileReader.readFile();
+        ip = new InputProcessorImlp(new Scanner(System.in));
 
     }
 
@@ -26,13 +26,13 @@ public class VocabularyImp implements Vocabulary {
 
         for (Map.Entry<String, String> wordPair : words.entrySet()) {
             if (wordPair.getValue().equals(ruWord)) {
-                System.out.println("English equivalent: " + wordPair.getKey());
+                ip.print("English equivalent: " + wordPair.getKey());
 
                 return wordPair.getKey();
             }
         }
 
-        System.out.println("No matches found...");
+        ip.print("No matches found...");
         return null;
 
     }
@@ -40,17 +40,17 @@ public class VocabularyImp implements Vocabulary {
     @Override
     public String enRuTranslate(String enWord) {
         if (words.get(enWord) != null) {
-            System.out.println("Russian equivalent: " + words.get(enWord));
+            ip.print("Russian equivalent: " + words.get(enWord));
             return words.get(enWord);
         }
-        System.out.println("No matches found...");
+        ip.print("No matches found...");
         return null;
     }
 
     @Override
     public void addWordIntoVocabulary(String enWord, String ruWord) {
         words.put(enWord, ruWord);
-        System.out.println("Success!");
+        ip.print("Success!");
     }
 
     @Override
@@ -64,41 +64,42 @@ public class VocabularyImp implements Vocabulary {
             quizWords.remove(index);
         }
         for (String word : quizWords) {
-            System.out.println("Equivalent of : " + word);
-            Scanner sc = new Scanner(System.in);
-            String answer = sc.nextLine().trim().toLowerCase();
+            ip.print("Equivalent of : " + word);
+
+            String answer = ip.getConsoleWordInput().trim().toLowerCase();
             if (words.get(answer) == null || !words.get(answer).equals(word)) {
                 score -= 20;
                 wrongAnswers.add(word);
             }
         }
         if (!wrongAnswers.isEmpty()) {
-            System.out.println("Your score: " + score);
-            System.out.println("Wrong answers: ");
+            ip.print("Your score: " + score);
+            ip.print("Wrong answers: ");
             int i = 0;
             for (String word : wrongAnswers) {
                 i++;
                 for (Map.Entry<String, String> wordPair : words.entrySet()) {
                     if (wordPair.getValue().equals(word)) {
-                        System.out.println(i + ": " + wordPair.getKey() + " - " + wordPair.getValue());
+                        ip.print(i + ": " + wordPair.getKey() + " - " + wordPair.getValue());
                     }
                 }
             }
         } else {
-            System.out.println("Your score: " + score + "!!!");
+            ip.print("Your score: " + score + "!!!");
         }
     }
 
     @Override
     public void showAllWords() {
         for (Map.Entry<String, String> a : words.entrySet()) {
-            System.out.println("en: " + a.getKey() + " ru: " + a.getValue());
+            ip.print("en: " + a.getKey() + " ru: " + a.getValue());
         }
     }
 
     @Override
     public void amountOfPairs() {
-        System.out.println("Amount of words in vocabulary: " + words.size());
+
+        ip.print("Amount of words in vocabulary: " + words.size());
     }
 
     @Override
