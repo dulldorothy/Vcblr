@@ -8,4 +8,4 @@ ring;кольцо
 line;линия
 bird;птица
 bun;булочка
-canser;рак
+
